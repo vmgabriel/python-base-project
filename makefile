@@ -51,7 +51,7 @@ install-dev:
 
 
 install-prod:
-	pip install -r requirements/production.txt
+	pip install -r $(REQUIREMENTS)
 
 
 install:
