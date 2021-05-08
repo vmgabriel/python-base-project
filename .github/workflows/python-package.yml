@@ -25,4 +25,4 @@ jobs:
         make lint-statistics
     - name: Test with unittest
       run: |
-        make test 
+        make test

@@ -47,11 +47,11 @@ endif
 install-dev:
 	python -m virtualenv venv
 	chmod +x venv/bin/activate
-	make load && ./venv/bin/pip install -r $(REQUIREMENTS)
+	make load && ./venv/bin/pip install -r requirements/test.txt
 
 
 install-prod:
-	pip install -r $(REQUIREMENTS)
+	pip install -r requirements/production.txt
 
 
 install:
