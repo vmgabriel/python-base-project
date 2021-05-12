@@ -23,7 +23,6 @@ coverage:
 	coverage run --omit 'venv/*' -m pytest tests/ -v
 	make test-report
 
-
 test-report:
 	coverage report -m
 	coverage html
@@ -31,7 +30,6 @@ test-report:
 
 lint:
 	flake8 --exclude=venv
-
 
 lint-statistics:
 	flake8 . --exclude=venv --count --select=E9,F63,F7,F82 --show-source --statistics
@@ -49,10 +47,11 @@ install-dev:
 	chmod +x venv/bin/activate
 	make load && ./venv/bin/pip install -r requirements/test.txt
 
+install-test:
+	pip install -r requirements/test.txt
 
 install-prod:
 	pip install -r requirements/production.txt
-
 
 install:
 ifeq ($(ENV), development)
@@ -60,6 +59,9 @@ ifeq ($(ENV), development)
 endif
 ifeq ($(ENV), production)
 	make install-prod
+endif
+ifeq ($(ENV), test)
+	make install-test
 endif
 ifeq ($(ENV), undefined)
 	make install-dev
@@ -69,10 +71,8 @@ endif
 unit-test:
 	python -m unittest discover -v -s tests/unit
 
-
 integration-test:
 	python -m unittest discover -v -s tests/integration
-
 
 test:
 ifeq ($(ENV), development)
